@@ -103,7 +103,9 @@
                 ".gitattributes": "../.gitattributes"
             },
             "excludes": {
-                "sites/development.services.yml": "sites/development.services.yml"
+                "sites/development.services.yml": "sites/development.services.yml",
+                "sites/default/default.settings.php": "sites/default/default.settings.php",
+                "sites/default/default.services.yml": "sites/default/default.services.yml"
             }
         },
         "patches-file": "composer.patches.json",
