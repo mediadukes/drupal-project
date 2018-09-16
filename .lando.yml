@@ -1,0 +1,33 @@
+# CHANGE ME (replace "md-drupal-project" with a project name).
+name: md-drupal-project
+recipe: drupal8
+
+config:
+  # Lando's d8 recipe defaults to Apache, but most hosting providers use nginx.
+  via: nginx
+
+  # Set the webroot.
+  webroot: ./web
+
+  # Lando defaults to the latest MySQL release, but most hosting uses MariaDB.
+  # Optionally specify the version to match that of the hosting provider.
+  database: mariadb
+
+services:
+  database:
+    # CHOOSE A PORT (replace "00000" with a port number).
+    # Prevents lando from choosing a random port each time you start or rebuild it.
+    portforward: 00000
+
+    # CHOOSE DB CREDS (replace "drupal8" with a project specific db creds).
+    creds:
+      user: drupal8
+      password: drupal8
+      database: drupal8
+
+    # Prevents losing your db if docker container breaks down.
+    overrides:
+      services:
+        # CREATE DIR (Add the "db" directory inside the "lando_assets" directory).
+        volumes:
+          - $LANDO_APP_ROOT/lando_assets/db:/var/lib/mysql
