@@ -20,7 +20,7 @@ for your setup.
 After that you can create the project:
 
 ```
-composer create-project mediadukes/drupal-project:1.x-dev some-dir --repository-url https://packages.mediadukes.be --stability dev --no-interaction
+composer create-project mediadukes/drupal-project:dev-8.x-md some-dir --repository-url https://packages.mediadukes.be --stability dev --no-interaction
 ```
 
 With `composer require ...` you can download new dependencies to your 
