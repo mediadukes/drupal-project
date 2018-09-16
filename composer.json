@@ -1,20 +1,35 @@
 {
-    "name": "drupal-composer/drupal-project",
-    "description": "Project template for Drupal 8 projects with composer",
+    "name": "mediadukes/drupal-project",
+    "description": "Project template for MediaDukes projects with Drupal 8 via Composer.",
     "type": "project",
+    "keywords": ["Drupal", "MediaDukes"],
+    "homepage": "https://github.com/mediadukes/drupal-project",
+    "support": {
+        "issues": "https://github.com/mediadukes/drupal-project/issues",
+        "source": "https://github.com/mediadukes/drupal-project.git"
+    },
     "license": "GPL-2.0-or-later",
     "authors": [
         {
-            "name": "",
-            "role": ""
+            "name": "Aimé van Pottelsberghe (aka Hatznie)",
+            "homepage": "https://www.drupal.org/u/hatznie",
+            "role": "Maintainer"
         }
     ],
-    "repositories": [
-        {
+    "repositories": {
+        "Drupal contrib": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        "Bower & npm assets": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
+        "MD private packagist": {
+            "type": "composer",
+            "url": "https://packages.mediadukes.be"
         }
-    ],
+    },
     "require": {
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
@@ -22,6 +37,8 @@
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.6.0",
         "drush/drush": "^9.0.0",
+        "mediadukes/mdp_amatus": "dev-develop",
+        "oomphinc/composer-installers-extender": "^1.1",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3"
@@ -61,9 +78,19 @@
         "patchLevel": {
             "drupal/core": "-p2"
         },
+        "installer-types": [
+            "component",
+            "bower-asset",
+            "npm-asset"
+        ],
         "installer-paths": {
             "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/libraries/{$name}": [
+                "type:drupal-library",
+                "type:component",
+                "type:bower-asset",
+                "type:npm-asset"
+            ],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
@@ -73,7 +100,12 @@
             "initial": {
                 ".editorconfig": "../.editorconfig",
                 ".gitattributes": "../.gitattributes"
+            },
+            "excludes": {
+                "sites/development.services.yml": "sites/development.services.yml"
             }
-        }
+        },
+        "patches-file": "composer.patches.json",
+        "enable-patching": true
     }
 }
