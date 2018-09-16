@@ -37,7 +37,7 @@
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.6.0",
         "drush/drush": "^9.0.0",
-        "mediadukes/mdp_amatus": "dev-develop",
+        "mediadukes/mdp_amatus": "1.x-dev",
         "oomphinc/composer-installers-extender": "^1.1",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
