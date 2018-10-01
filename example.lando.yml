@@ -13,6 +13,10 @@ config:
   # Optionally specify the version to match that of the hosting provider.
   database: mariadb
 
+proxy:
+  mailhog:
+    - mail.mddrupalproject.lndo.site
+
 services:
   database:
     # CHOOSE A PORT (replace "00000" with a port number).
@@ -31,3 +35,7 @@ services:
         # CREATE DIR (Add the "db" directory inside the "lando_assets" directory).
         volumes:
           - $LANDO_APP_ROOT/lando_assets/db:/var/lib/mysql
+  mailhog:
+    type: mailhog
+    hogfrom:
+      - appserver
