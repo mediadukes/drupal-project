@@ -28,10 +28,13 @@ $env = (function ($branch) {
     case 'staging':
       return 'test';
 
-    default:
+    case 'dev':
       return 'dev';
+
+    default:
+      die('Something is going wrong with the .env variables.');
   }
-})($_ENV['PLATFORM_BRANCH'] ?? NULL);
+})(getenv('CURRENT_ENVIRONMENT') ?? NULL);
 
 // Restrict access to the update page by default.
 $settings['update_free_access'] = FALSE;
@@ -65,6 +68,8 @@ foreach (['local', 'dev', 'test', 'live'] as $split) {
 
 // Set a hash salt if the hosting provider settings have not already done so.
 // Consider setting this via an environment variable for added security.
+// Generate a hash using following drush command:
+// drush eval "var_dump(Drupal\Component\Utility\Crypt::randomBytesBase64(55))"
 if (empty($settings['hash_salt'])) {
   $settings['hash_salt'] = 'CHANGE-ME-PER-PROJECT-OR-ENVIRONMENT';
 }

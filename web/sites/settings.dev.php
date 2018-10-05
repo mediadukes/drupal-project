@@ -89,12 +89,12 @@ $settings['update_free_access'] = TRUE;
 // Provide sane defaults for local development database settings.
 if (empty($databases['default']['default'])) {
   $databases['default']['default'] = [
-    'database' => 'drupal8',
-    'username' => 'drupal8',
-    'password' => 'drupal8',
+    'database' => getenv('MYSQL_DATABASE'),
+    'username' => getenv('MYSQL_USER'),
+    'password' => getenv('MYSQL_PASSWORD'),
     'prefix' => '',
-    'host' => 'database',
-    'port' => '3306',
+    'host' => getenv('MYSQL_HOSTNAME'),
+    'port' => getenv('MYSQL_PORT'),
     'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
     'driver' => 'mysql',
   ];
